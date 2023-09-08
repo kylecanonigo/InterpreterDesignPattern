@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.Stack;
 
 public class ExpressionParser {
@@ -46,12 +47,16 @@ public class ExpressionParser {
     }
 
     public static void main(String[] args) {
-        String postfixExpression = "5 3 + 2 *"; // Example Postfix expression
-        Context context = new Context(postfixExpression);
+        // Prompt the user for a postfix expression
+        System.out.print("Enter a postfix expression (e.g., '5 3 + 2 *'): ");
+        Scanner scanner = new Scanner(System.in);
+        String postfixExpression = scanner.nextLine();
+        scanner.close();
 
+        Context context = new Context(postfixExpression);
         AbstractExpression expression = parseExpression(context);
 
         int result = expression.interpret();
-        System.out.println("Result: " + result); // Output: Result: 16
+        System.out.println("Result: " + result);
     }
 }
